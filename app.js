@@ -44,6 +44,7 @@ window.addEventListener('scroll', () => {
 const scrollLink = document.querySelectorAll('.scroll-link')
 scrollLink.forEach((link) => {
   link.addEventListener('click', (e) => {
+    console.log('Button is clicked')
     e.preventDefault()
     // navigating to a specific spot
     const id = e.currentTarget.getAttribute('href').slice(1)
@@ -53,12 +54,14 @@ scrollLink.forEach((link) => {
     const containerHeight = linksContainer.getBoundingClientRect().height
     const fixedNav = navbar.classList.contains('fixed-nav')
 
-    let scrollY
+    let scrollY = element.offsetTop - navbarHeight
     if (!fixedNav) {
-      scrollY = element.offsetTop - 2 * navbarHeight
+      console.log('!fixedNav')
+      scrollY = scrollY - navbarHeight
     }
     if (navbarHeight > 82) {
-      scrollY = element.offsetTop + containerHeight - navbarHeight
+      console.log('navbarHeight > 82')
+      scrollY = scrollY + containerHeight
     }
     window.scrollTo(0, scrollY)
     linksContainer.style.height = 0
